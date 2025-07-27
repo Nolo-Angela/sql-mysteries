@@ -72,11 +72,14 @@ print("=============================================================")
 """
 check facebook event info
 """
-cursor.execute("SELECT * FROM interview WHERE person_id =67318")
-facebook = cursor.fetchall()
+print("Facebook event:")
+matching_id = []
+for item in member_info:
+    cursor.execute("SELECT * FROM facebook_event_checkin WHERE person_id LIKE ?", (f"{item[1]}%",))
+    facebook = cursor.fetchone()
+    matching_id.append(facebook)
 
-# for face in facebook:
-#     print(face)
+print(matching_id)
 
 
 connect.close()
