@@ -121,10 +121,12 @@ find matching description in facbook
 -tesla model s
 -sql symphony 3 times in DEC.2017
 """
-print("Facebook tables:")
-for id in license:
-    cursor.execute("SELECT * FROM facebook_event_checkin WHERE person_id LIKE ? AND date LIKE ?", ("%id[0]%" ,"%201712%",))
-    event_name = cursor.fetchall()
+print("Facebook table:")
+
+   # print(id[0])
+cursor.execute("SELECT * FROM facebook_event_checkin WHERE person_id = 918773")
+event_name = cursor.fetchall()
+print(event_name)
 
 for event in event_name:
     print(event)
