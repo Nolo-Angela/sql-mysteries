@@ -24,13 +24,14 @@ first_witness = cursor.fetchall()[0]
 #     print(witness)
 
 cursor.execute("SELECT * FROM person WHERE address_number =?", (first_witness))
-witness_1 = cursor.fetchall()
+witness_1 = cursor.fetchone()
 print(witness_1)
 print("=============================================================")
 
-cursor.execute("SELECT * FROM person WHERE address_street_name='Fanklin Ave'")
+cursor.execute("SELECT * FROM person WHERE address_street_name='Franklin Ave' AND name LIKE ?", (f"Annabel%",))
 second_witness = cursor.fetchall()
 
 for s in second_witness:
     print(s)
+
 connect.close()
