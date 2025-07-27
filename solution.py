@@ -52,6 +52,7 @@ Jan.19
 cursor.execute("SELECT * FROM get_fit_now_check_in WHERE membership_id LIKE ? AND check_in_date LIKE ?", (f"48Z%", "%0109%"),)
 check_in = cursor.fetchall()
 
+print("Member check in info:")
 for check in check_in:
     print(check)
 
@@ -59,10 +60,23 @@ print("=============================================================")
 """
 find members
 """
-member_info = ()
+print("Get fit now membership:")
+member_info = []
 for check in check_in:
     cursor.execute("SELECT * FROM get_fit_now_member WHERE id LIKE ?", (f"{check[0]}%",))
-    member = cursor.fetchall()
-    print(member)
+    member = cursor.fetchone()
+    member_info.append(member)
+print(member_info)
+
+print("=============================================================")
+"""
+check facebook event info
+"""
+cursor.execute("SELECT * FROM interview WHERE person_id =67318")
+facebook = cursor.fetchall()
+
+# for face in facebook:
+#     print(face)
+
 
 connect.close()
