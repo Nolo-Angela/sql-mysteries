@@ -27,7 +27,7 @@ cursor.execute("SELECT * FROM person WHERE address_number =?", (first_witness))
 witness_1 = cursor.fetchone()
 print(witness_1)
 print("=============================================================")
-
+#find their interviews
 cursor.execute("SELECT * FROM person WHERE address_street_name='Franklin Ave' AND name LIKE ?", (f"Annabel%",))
 second_witness = cursor.fetchall()
 
@@ -41,5 +41,28 @@ interviews = cursor.fetchall()
 
 for int in interviews:
     print(int)
+print("=============================================================")
+#find the killers gym info
+"""
+get fit gym
+membership number starts with 48Z- gold memberhip
+car plate- H42W
+Jan.19
+"""
+cursor.execute("SELECT * FROM get_fit_now_check_in WHERE membership_id LIKE ? AND check_in_date LIKE ?", (f"48Z%", "%0109%"),)
+check_in = cursor.fetchall()
+
+for check in check_in:
+    print(check)
+
+print("=============================================================")
+"""
+find members
+"""
+member_info = ()
+for check in check_in:
+    cursor.execute("SELECT * FROM get_fit_now_member WHERE id LIKE ?", (f"{check[0]}%",))
+    member = cursor.fetchall()
+    print(member)
 
 connect.close()
