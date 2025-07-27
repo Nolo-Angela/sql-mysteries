@@ -17,10 +17,16 @@ print("=========================================================")
 
 #find last house on Northwestern Dr
 # and name containing Annabel that lives on Frankline Ave
-cursor.execute("SELECT * FROM person WHERE address_street_name='Frankline Ave'")  
-adresses = cursor.fetchall()
+cursor.execute("SELECT MAX(address_number) FROM person WHERE address_street_name='Franklin Ave'")  
+first_witness = cursor.fetchall()[0]
 
-for adress in adresses:
-    print(adress)
+for witness in first_witness:
+    print(witness)
+
+cursor.execute("SELECT * FROM person WHERE address_street_name='Franklin Ave' AND address_number =?", (first_witness))
+witness_1 = cursor.fetchall()
+
+print(witness_1)
+
 
 connect.close()
