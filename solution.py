@@ -34,4 +34,12 @@ second_witness = cursor.fetchall()
 for s in second_witness:
     print(s)
 
+print("=============================================================")
+cursor.execute("SELECT * FROM interview WHERE  person_id=14887 OR person_id = 16371")
+#cursor.execute("SELECT * FROM interview WHERE person_id=16371")
+interviews = cursor.fetchall()
+
+for int in interviews:
+    print(int)
+
 connect.close()
