@@ -94,13 +94,39 @@ for item in member_info:
 matching_id.append(facebook)
 
 print(matching_id)
+print("=============================================================")
+"""
+find matching description in license table
+-65" 67"
+-red hair
+-tesla model s
+-sql symphony 3 times in DEC.2017
+"""
+license_list = []
 
-# cursor.execute("SELECT * FROM interview")
-# interview = cursor.fetchall()
+print("license table:")
+cursor.execute("SELECT * FROM drivers_license WHERE hair_color='red' AND gender='female' AND car_make='Tesla'")
+licenses = cursor.fetchall()
 
-# for interviewee in interview:
-#     print(interviewee)
+for license in licenses:
+    license_list.append(license)
 
+print(license_list)
 
+print("=============================================================")
+"""
+find matching description in facbook
+-65" 67"
+-red hair
+-tesla model s
+-sql symphony 3 times in DEC.2017
+"""
+print("Facebook tables:")
+for id in license:
+    cursor.execute("SELECT * FROM facebook_event_checkin WHERE person_id LIKE ? AND date LIKE ?", ("%id[0]%" ,"%201712%",))
+    event_name = cursor.fetchall()
+
+for event in event_name:
+    print(event)
 
 connect.close()
