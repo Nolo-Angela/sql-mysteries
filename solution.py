@@ -76,10 +76,31 @@ print("Facebook event:")
 matching_id = []
 for item in member_info:
     cursor.execute("SELECT * FROM facebook_event_checkin WHERE person_id LIKE ?", (f"{item[1]}%",))
-    facebook = cursor.fetchone()
-    matching_id.append(facebook)
+    facebook = cursor.fetchall()
+
+matching_id.append(facebook)
 
 print(matching_id)
+print("=============================================================")
+"""
+interview table
+"""
+print("Interviews:")
+matching_id = []
+for item in member_info:
+    cursor.execute("SELECT * FROM interview WHERE person_id LIKE ?", (f"{item[1]}%",))
+    facebook = cursor.fetchall()
+
+matching_id.append(facebook)
+
+print(matching_id)
+
+# cursor.execute("SELECT * FROM interview")
+# interview = cursor.fetchall()
+
+# for interviewee in interview:
+#     print(interviewee)
+
 
 
 connect.close()
